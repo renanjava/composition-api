@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CRUD Vue.js - Gerenciamento de Usuários</title>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div id="app">
+      <div class="container">
+        <div class="header">
+          <h1>🚀 CRUD Vue.js</h1>
+          <p>Sistema de Gerenciamento de Usuários</p>
+        </div>
+
+        <div class="content">
+          <!-- Alertas -->
+          <div v-if="alert.show" :class="['alert', alert.type]">
+            {{ alert.message }}
+          </div>
+
+          <!-- Formulário -->
+          <div class="form-container">
+            <h2 class="form-title">
+              {{ editingUser ? '✏️ Editar Usuário' : '➕ Adicionar Usuário' }}
+            </h2>
+
+            <form @submit.prevent="saveUser">
+              <div class="form-grid">
+                <div class="form-group">
+                  <label for="name">Nome Completo</label>
+                  <input
+                    type="text"
+                    id="name"
+                    v-model="currentUser.name"
+                    placeholder="Digite o nome completo"
+                    required
+                  />
+                </div>
+
+                <div class="form-group">
+                  <label for="email">E-mail</label>
+                  <input
+                    type="email"
+                    id="email"
+                    v-model="currentUser.email"
+                    placeholder="Digite o e-mail"
+                    required
+                  />
+                </div>
+
+                <div class="form-group">
+                  <label for="age">Idade</label>
+                  <input
+                    type="number"
+                    id="age"
+                    v-model="currentUser.age"
+                    placeholder="Digite a idade"
+                    min="1"
+                    required
+                  />
+                </div>
+
+                <div class="form-group">
+                  <label for="city">Cidade</label>
+                  <input
+                    type="text"
+                    id="city"
+                    v-model="currentUser.city"
+                    placeholder="Digite a cidade"
+                    required
+                  />
+                </div>
+              </div>
+
+              <div class="button-group">
+                <button type="submit" class="btn btn-success">
+                  {{ editingUser ? '💾 Atualizar' : '➕ Adicionar' }}
+                </button>
+
+                <button
+                  type="button"
+                  class="btn btn-primary"
+                  @click="clearForm"
+                  v-if="editingUser"
+                >
+                  🔄 Cancelar
+                </button>
+              </div>
+            </form>
+          </div>
+
+          <!-- Lista de Usuários -->
+          <div class="users-container">
+            <div class="users-header">
+              <h2 class="users-title">👥 Lista de Usuários</h2>
+              <div class="users-count">Total: {{ users.length }}</div>
+            </div>
+
+            <div v-if="users.length === 0" class="empty-state">
+              <div class="empty-icon">📝</div>
+              <h3>Nenhum usuário cadastrado</h3>
+              <p>Adicione o primeiro usuário usando o formulário acima</p>
+            </div>
+
+            <div v-else class="users-grid">
+              <div v-for="user in users" :key="user.id" class="user-card">
+                <div class="user-info">
+                  <div class="user-field">
+                    <strong>Nome</strong>
+                    <span>{{ user.name }}</span>
+                  </div>
+
+                  <div class="user-field">
+                    <strong>E-mail</strong>
+                    <span>{{ user.email }}</span>
+                  </div>
+
+                  <div class="user-field">
+                    <strong>Idade</strong>
+                    <span>{{ user.age }} anos</span>
+                  </div>
+
+                  <div class="user-field">
+                    <strong>Cidade</strong>
+                    <span>{{ user.city }}</span>
+                  </div>
+                </div>
+
+                <div class="user-actions">
+                  <button class="btn btn-warning" @click="editUser(user)">
+                    ✏️ Editar
+                  </button>
+
+                  <button class="btn btn-danger" @click="deleteUser(user.id)">
+                    🗑️ Excluir
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="script.js"></script>
+  </body>
+</html>
