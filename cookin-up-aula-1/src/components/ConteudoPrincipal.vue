@@ -16,7 +16,7 @@ export default {
             </span>
 
             <ul class="ingredientes-sua-lista">
-                <li v-for="ingrediente in ingredientes" class="ingrediente">
+                <li v-for="ingrediente in ingredientes" v-bind:key="ingrediente" class="ingrediente">
                     {{ ingrediente }}
                 </li>
             </ul>
