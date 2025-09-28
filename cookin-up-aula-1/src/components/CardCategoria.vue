@@ -1,12 +1,11 @@
 <script lang="ts">
 import Tag from './Tag.vue';
-
-    export default {
-        props: {
-            categoria: Object
-        },
-        components: { Tag }
-    }
+export default {
+    props: {
+        categoria: Object
+    },
+    components: { Tag }
+}
 </script>
 
 <template>
