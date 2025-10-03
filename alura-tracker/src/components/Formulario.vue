@@ -45,24 +45,26 @@ export default defineComponent({
   data() {
     return {
       tempoEmSegundos: 0,
+      cronometro: 0,
     };
   },
   computed: {
     tempoDecorrido(): string {
-      return new Date(this.tempoEmSegundos * 1000)
-        .toISOString()
-        .substr(11, 8);
+      return new Date(this.tempoEmSegundos * 1000).toISOString().substr(11, 8);
     },
   },
   methods: {
     iniciar() {
-      setInterval(() => {
+      this.cronometro = setInterval(() => {
         this.tempoEmSegundos += 1;
-        console.log(this.tempoEmSegundos);
       }, 1000);
     },
     finalizar() {
-      console.log("finalizando");
+      clearInterval(this.cronometro);
+      console.log({
+        cronometro: this.cronometro,
+        tempoEmSegundos: this.tempoEmSegundos,
+      });
     },
   },
 });
