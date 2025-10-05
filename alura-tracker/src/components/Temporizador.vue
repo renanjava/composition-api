@@ -49,3 +49,10 @@ export default defineComponent({
   },
 });
 </script>
+
+<style scoped>
+.button {
+  color: var(--texto-primario);
+  background-color: var(--bg-primario) !important;
+}
+</style>

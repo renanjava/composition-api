@@ -3,11 +3,11 @@
     rel="stylesheet"
     href="https://cdn.jsdelivr.net/npm/bulma@1.0.4/css/bulma.min.css"
   />
-  <main class="columns is-gapless is-multiline">
+  <main class="columns is-gapless is-multiline modo-escuro">
     <div class="column is-one-quarter">
       <BarraLateral />
     </div>
-    <div class="column is-three-quarter">
+    <div class="column is-three-quarter conteudo">
       <Formulario @submit-tarefa="salvarTarefa" />
       <div class="lista">
         <Tarefa
@@ -58,8 +58,21 @@ export default defineComponent({
 });
 </script>
 
-<style scoped>
+<style>
 .lista {
   padding: 1.25rem;
+}
+main {
+  --bg-primario: #fff;
+  --bg-secundario: #dfd366;
+  --texto-primario: #000;
+}
+main.modo-escuro {
+  --bg-primario: #2b2d42;
+  --bg-secundario: #000;
+  --texto-primario: #ddd;
+}
+.conteudo {
+  background-color: var(--bg-primario);
 }
 </style>
