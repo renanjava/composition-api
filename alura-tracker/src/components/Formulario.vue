@@ -23,19 +23,26 @@
 <script lang="ts">
 import { defineComponent } from "vue";
 import Temporizador from "./Temporizador.vue";
+import { ITarefa } from "@/interfaces/ITarefa";
 
 export default defineComponent({
   name: "Formulario",
   components: {
     Temporizador,
   },
+  emits: ["submitTarefa"],
   data() {
     return {
       descricao: "",
     };
   },
   methods: {
-    finalizarTarefa(tempoDecorrido: string): void {
+    finalizarTarefa(tempoDecorrido: number): void {
+      const tarefa = {
+        duracaoEmSegundos: tempoDecorrido,
+        descricao: this.descricao,
+      } as ITarefa;
+      this.$emit("submitTarefa", tarefa);
       this.descricao = "";
     },
   },

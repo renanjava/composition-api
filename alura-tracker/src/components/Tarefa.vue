@@ -1,9 +1,9 @@
 <template>
   <div class="box has-text-weight-bold">
     <div class="columns">
-      <div class="column is-7">Descricao da Tarefa</div>
+      <div class="column is-7">{{ descricao }}</div>
       <div class="column">
-        <Cronometro />
+        <Cronometro :tempo-em-segundos="duracaoEmSegundos" />
       </div>
     </div>
   </div>
@@ -17,6 +17,10 @@ export default defineComponent({
   name: "Tarefa",
   components: {
     Cronometro,
+  },
+  props: {
+    duracaoEmSegundos: Number,
+    descricao: String,
   },
 });
 </script>
