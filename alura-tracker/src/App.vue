@@ -11,10 +11,10 @@
       <Formulario @submit-tarefa="salvarTarefa" />
       <div class="lista">
         <Tarefa
-          v-for="tarefa in tarefas"
+          v-for="(tarefa, index) in tarefas"
           :descricao="tarefa.descricao"
           :duracao-em-segundos="tarefa.duracaoEmSegundos"
-          :key="tarefa.descricao"
+          :key="index"
         />
       </div>
     </div>
