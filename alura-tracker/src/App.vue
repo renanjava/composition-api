@@ -3,9 +3,9 @@
     rel="stylesheet"
     href="https://cdn.jsdelivr.net/npm/bulma@1.0.4/css/bulma.min.css"
   />
-  <main class="columns is-gapless is-multiline modo-escuro">
+  <main class="columns is-gapless is-multiline" :class="{'modo-escuro': modoEscuro}">
     <div class="column is-one-quarter">
-      <BarraLateral />
+      <BarraLateral @ao-alterar-tema="alterarTema"/>
     </div>
     <div class="column is-three-quarter conteudo">
       <Formulario @submit-tarefa="salvarTarefa" />
@@ -44,6 +44,9 @@ export default defineComponent({
     salvarTarefa(tarefa: ITarefa) {
       this.tarefas.push(tarefa);
     },
+    alterarTema(modoEscuro: boolean) {
+      this.modoEscuro = modoEscuro
+    }
   },
   computed: {
     listaEstaVazia(): boolean {
@@ -53,6 +56,7 @@ export default defineComponent({
   data() {
     return {
       tarefas: [] as ITarefa[],
+      modoEscuro: false,
     };
   },
 });
