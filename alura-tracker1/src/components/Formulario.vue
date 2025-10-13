@@ -1,5 +1,5 @@
 <template>
-  <div class="box">
+  <div class="box formulario">
     <div class="columns">
       <div
         class="column is-8"
@@ -48,3 +48,21 @@ export default defineComponent({
   },
 });
 </script>
+
+<style>
+.box {
+  color: var(--bg-primario) !important;
+  background-color: var(--bg-secundario) !important;
+}
+.input {
+  color: var(--texto-primario) !important;
+  background-color: var(--bg-primario) !important;
+}
+.input::placeholder {
+  color: var(--texto-primario) !important;
+}
+.formulario {
+  color: var(--texto-primario) !important;
+  background-color: var(--bg-primario) !important;
+}
+</style>
